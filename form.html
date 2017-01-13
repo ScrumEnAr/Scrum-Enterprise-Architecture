@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <dl>
+        <legend>Please fill  the form below: </legend>
+  <p>
+    <label>Fullname:
+      <input type="text" name="Fullname" size="20" maxlength="40" />
+    </label>
+  </p>
+  <p>
+    <label>Surname:
+      <input type="text" name="Surname" size="20" maxlength="40" />
+    </label>
+  </p>
+  <p>
+    <label>E-mail:
+      <input type="text" name="Email" size="25" maxlength="60" />
+    </label>
+  </p>
+  <p>
+    <label>Telephone number:
+      <input type="text" name="Telephone" size="20" maxlength="10" />
+    </label>
+  </p>
+  <p>
+    <label> Age </label>
+    <input type="text" name="Age" size="5" maxlength="3" />
+  </p>
+  <input type="submit" value="submit"/>
+      </dl>
+    </form>
+  {% endif %}
+  <ul class=entries>
+  {% for entry in entries %}
+    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}
